@@ -7,7 +7,7 @@ class TimMang
 {
 private:
     vector<int> A, B;
-    
+
 public:
     TimMang()
     {
@@ -16,22 +16,41 @@ public:
         cin >> n;
         cout << "Nhap so phan tu cua B: ";
         cin >> m;
-        vector<int> A(n), B(m);
+
+        if (n == 0 || m == 0) {
+            A.clear();
+            B.clear();
+            if (n == 0) {
+                cout << "Mang A khong co phan tu." << endl;
+            }
+            if (m == 0) {
+                cout << "Mang B khong co phan tu." << endl;
+            }
+            return;
+        }
+
+        A.resize(n);
+        B.resize(m);
+
         cout << "Nhap cac phan tu cua A: ";
         for (int &x : A)
             cin >> x;
         cout << "Nhap cac phan tu cua B: ";
         for (int &x : B)
             cin >> x;
-        this->A=A;
-        this->B=B;
+        this->A = A;
+        this->B = B;
     }
-    
+
     vector<int> ViTriXuatHien()
     {
         vector<int> ViTri;
         int lenA = A.size();
         int lenB = B.size();
+
+        if (lenA == 0 || lenB == 0 || lenA > lenB) {
+            return ViTri;
+        }
 
         for (int i = 0; i <= lenB - lenA; i++)
         {
@@ -42,28 +61,27 @@ public:
         }
         return ViTri;
     }
-    
+
     int DemSoLanXuatHien()
     {
         return ViTriXuatHien().size();
     }
-    
+
     void In()
     {
         vector<int> ViTri = this->ViTriXuatHien();
         cout << "So lan xuat hien: " << ViTri.size() << endl;
         cout << "Vi tri bat dau: ";
-        bool check=false;
+        bool check = false;
         for (int pos : ViTri)
         {
             cout << pos << " ";
-            check=true;
+            check = true;
         }
-        if(!check)
-            cout<<"Khong co";
+        if (!check)
+            cout << "Khong co";
         cout << endl;
     }
-    
 };
 
 int main()
