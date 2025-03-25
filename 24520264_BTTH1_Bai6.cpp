@@ -57,7 +57,7 @@ public:
         for (int pos : ViTri)
         {
             cout << pos << " ";
-            check=false;
+            check=true;
         }
         if(!check)
             cout<<"Khong co";
